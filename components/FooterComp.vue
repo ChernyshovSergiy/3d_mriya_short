@@ -281,7 +281,7 @@
 </template>
 
 <script>
-import { VTextField, VSelect } from 'vuetify/lib'
+import { VTextField, VSelect } from 'vuetify/lib';
 export default {
     name: 'FooterComp',
     components: {
@@ -401,7 +401,7 @@ export default {
                     image: 'visa.png'
                 }
             ]
-        }
+        };
     },
     // computed: {
     //     nameRulesRequired() {
@@ -410,7 +410,7 @@ export default {
     // },
     methods: {
         messageRulesRequired() {
-            return this.$t('message_is_required')
+            return this.$t('message_is_required');
         },
         submit() {
             // if (this.$refs.form.validate()) {
@@ -421,7 +421,7 @@ export default {
             // }
         }
     }
-}
+};
 </script>
 
 <style scoped>

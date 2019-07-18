@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import OrderForm from '@/components/OrderForm.vue'
+import OrderForm from '@/components/OrderForm.vue';
 export default {
     components: {
         OrderForm
@@ -20,9 +20,9 @@ export default {
     data() {
         return {
             title: 'This is Order form page'
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped></style>

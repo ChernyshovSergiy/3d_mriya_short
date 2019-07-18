@@ -167,7 +167,7 @@
 </template>
 
 <script>
-import { VTextField } from 'vuetify/lib'
+import { VTextField } from 'vuetify/lib';
 export default {
     middleware: 'guest',
     name: 'Home',
@@ -210,16 +210,16 @@ export default {
                 v => !!v || 'Password confirmation is required',
                 v => v === this.form.password || 'Password must be confirm'
             ]
-        }
+        };
     },
     methods: {
         toAccount() {
-            this.dialog = false
-            this.$router.push('/sign-in')
+            this.dialog = false;
+            this.$router.push('/sign-in');
         },
         requestResetPassword: async function() {
-            this.indeterminate = true
-            this.loading = true
+            this.indeterminate = true;
+            this.loading = true;
             try {
                 await this.$axios
                     .post('/auth/reset-password', {
@@ -228,17 +228,17 @@ export default {
                     })
                     .then(
                         result => {
-                            this.response = result.data
-                            console.log('my result: ', result.data)
-                            this.loading = false
-                            this.indeterminate = false
-                            this.dialog = false
-                            this.dialog2 = true
+                            this.response = result.data;
+                            console.log('my result: ', result.data);
+                            this.loading = false;
+                            this.indeterminate = false;
+                            this.dialog = false;
+                            this.dialog2 = true;
                         },
                         error => {
-                            console.error(error)
+                            console.error(error);
                         }
-                    )
+                    );
             } catch (e) {}
         },
         async submit() {
@@ -247,24 +247,24 @@ export default {
                     await this.$axios
                         .post('/auth/register', this.form)
                         .then(response => {
-                            console.log('1', response.data.errors.email[0])
+                            console.log('1', response.data.errors.email[0]);
                             if (response.data.errors.email[0] !== '') {
-                                console.log('2', this.dialog)
-                                this.dialog = true
-                                console.log('3', this.dialog)
+                                console.log('2', this.dialog);
+                                this.dialog = true;
+                                console.log('3', this.dialog);
                             } else {
-                                this.$router.push('/sign-in')
+                                this.$router.push('/sign-in');
                             }
                         })
                         .catch(err => {
-                            console.log('err11 ', err)
-                        })
+                            console.log('err11 ', err);
+                        });
                 } catch (e) {}
             }
         }
     },
     strict: process.env.NODE_ENV !== 'production'
-}
+};
 </script>
 
 <style scoped></style>

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { VTextField, VSelect } from 'vuetify/lib'
+import { VTextField, VSelect } from 'vuetify/lib';
 export default {
     name: 'OrderForm',
     components: {
@@ -83,22 +83,22 @@ export default {
     }),
 
     mounted() {
-        this.$validator.localize('ru', this.dictionary)
+        this.$validator.localize('ru', this.dictionary);
     },
 
     methods: {
         submit() {
-            this.$validator.validateAll()
+            this.$validator.validateAll();
         },
         clear() {
-            this.name = ''
-            this.email = ''
-            this.select = null
-            this.checkbox = null
-            this.$validator.reset()
+            this.name = '';
+            this.email = '';
+            this.select = null;
+            this.checkbox = null;
+            this.$validator.reset();
         }
     }
-}
+};
 </script>
 
 <style scoped></style>

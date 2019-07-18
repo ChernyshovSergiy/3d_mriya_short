@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { VTextField } from 'vuetify/lib'
+import { VTextField } from 'vuetify/lib';
 export default {
     name: 'SignIn',
     middleware: 'guest',
@@ -76,7 +76,7 @@ export default {
                     v.length >= 8 ||
                     'Password must be greater than 8 characters'
             ]
-        }
+        };
     },
     methods: {
         async submit() {
@@ -87,20 +87,20 @@ export default {
                             email: this.formPoint.email,
                             password: this.formPoint.password
                         }
-                    })
+                    });
                 } catch (e) {
-                    return
+                    return;
                 }
                 this.$router.push(
                     this.$route.query.redirect
                         ? this.$route.query.redirect
                         : '/'
-                )
+                );
             }
         }
     },
     strict: process.env.NODE_ENV !== 'production'
-}
+};
 </script>
 
 <style scoped></style>

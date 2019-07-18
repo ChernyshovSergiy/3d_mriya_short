@@ -65,9 +65,61 @@ export default {
     close: 'Cerrar',
     link_is_required: 'Se requiere enlace',
     link_must_be_valid: 'El enlace debe ser válido',
+    link_must_be_less_than_500_characters:
+        'El enlace debe tener menos de 500 caracteres',
     desc_google_folder:
         'Este campo es para un enlace a la carpeta con sus materiales.\n' +
         'Cree una carpeta en el Disco de Google y cargue materiales (descripción, dibujos, fotos, texturas ...) en ella. La carpeta debe tener acceso abierto para su visualización.',
     rendering_info:
-        'Para la impresión 3D de un producto, solo se necesita un modelo poligonal. La textura y la visualización se pueden solicitar adicionalmente para el orden correcto posterior de la lista pintada del producto impreso, pero conllevan costos financieros adicionales.'
-}
+        'Para la impresión 3D de un producto, solo se necesita un modelo poligonal. La textura y la visualización se pueden solicitar adicionalmente para el orden correcto posterior de la lista pintada del producto impreso, pero conllevan costos financieros adicionales.',
+    confirm_order:
+        'Su pedido ha sido confirmado con éxito. Nuestros especialistas se pondrán en contacto con usted lo antes posible.',
+    error_confirm_order:
+        'Se ha producido un error al confirmar el pedido. Para resolver el problema, envíenos un mensaje (con el número de pedido) al correo electrónico: ',
+
+    // 3D Printing
+    link_printing_order:
+        'Enlace al modelo 3D de STL cargado en el disco de Google*',
+    desc_google_stl:
+        'Cargue el modelo 3D en formato * .stl en el Disco de Google. Abra el enlace e ingrese el enlace en este campo',
+    hollow: 'Hueco',
+    size: 'Tamaño de la colección',
+    measure_miniature:
+        'Las miniaturas de colección militar se miden desde la base de los pies hasta la parte superior de la cabeza.',
+    height: 'Altura (en milímetros)',
+    over_height:
+        'Especifique la altura (en milímetros) desde la parte inferior hasta el punto más alto de la miniatura. La altura debe ser de al menos 25 milímetros y no más de 185 milímetros.',
+    height_is_required: 'Especificar la altura',
+    height_must_be_numeric: 'La altura debe ser numérica',
+    height_must_be_more_25_millimeters: 'La altura no debe ser inferior a 25mm',
+    height_must_be_less_185_millimeters:
+        'La altura no debe ser superior a 185 milímetros',
+    height_must_be_less_than_4_numbers:
+        'La altura debe tener menos de 4 dígitos',
+    hollow_info:
+        'Para lograr el costo deseado, el modelo impreso puede ser hueco, con ciertos parámetros técnicos, este factor no afecta la resistencia del producto impreso.',
+    supports: 'Ayudas',
+    supports_info:
+        'El soporte correctamente instalado es muy importante para la correcta impresión 3D del producto. Si su modelo * .stl ya tiene soporte, no necesita activar esta casilla de verificación',
+    post_processing: 'Postprocesamiento',
+    post_processing_info:
+        'Una vez completada la impresión 3D, es necesario quitar correctamente los soportes y pulir sus uniones. Si desea hacerlo usted mismo, no necesita activar esta casilla de verificación.',
+    material: 'Material',
+    material_info: 'Selecciona el material para imprimir tu producto',
+    plastic: 'El plastico',
+    metal: 'Metal',
+    quality: 'Calidad',
+    quality_info:
+        'Seleccione el grosor de la capa de impresión. Cuanto más delgada sea la capa, mayor será la calidad del producto impreso, pero mayor será el precio del producto terminado',
+    micron: 'micrón',
+    size_is_required: 'debes seleccionar una talla',
+    material_is_required: 'se requiere material',
+    quality_is_required: 'calidad requerida',
+    quantity_is_required: 'se requiere cantidad',
+    quantity_must_be_numeric: 'la cantidad debe ser numérica',
+    quantity_must_be_less_than_6_numbers:
+        'el número debe tener menos de 6 dígitos',
+    quantity: 'Cantidad (en piezas)',
+    other: 'Otro',
+    order_3dPrinting: 'orden de impresión 3D'
+};

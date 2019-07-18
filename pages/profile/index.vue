@@ -12,7 +12,7 @@
 export default {
     layout: 'cabinet',
     middleware: 'auth'
-}
+};
 </script>
 
 <style scoped></style>

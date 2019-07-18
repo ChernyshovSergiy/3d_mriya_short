@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { VTextField } from 'vuetify/lib'
+import { VTextField } from 'vuetify/lib';
 export default {
     middleware: 'guest',
     components: {
@@ -94,7 +94,7 @@ export default {
                 v => !!v || 'Password confirmation is required',
                 v => v === this.formPoint.password || 'Password must be confirm'
             ]
-        }
+        };
     },
     methods: {
         async resetPassword() {
@@ -110,22 +110,22 @@ export default {
                         })
                         .then(
                             response => {
-                                console.log('result: ', response.data)
-                                this.$router.push('/sign-in')
+                                // console.log('result: ', response.data);
+                                this.$router.push('/sign-in');
                             },
                             error => {
-                                console.error(error)
+                                console.error(error);
                             }
                         )
                         .catch(error => {
-                            console.log(error.response)
-                        })
+                            console.log(error.response);
+                        });
                 } catch (e) {}
             }
         }
     },
     strict: process.env.NODE_ENV !== 'production'
-}
+};
 </script>
 
 <style scoped></style>

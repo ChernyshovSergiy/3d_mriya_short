@@ -15,9 +15,9 @@ export default {
     data() {
         return {
             title: 'This is Affiliate/Reseller page'
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped></style>

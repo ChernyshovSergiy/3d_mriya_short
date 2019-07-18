@@ -238,27 +238,27 @@ export default {
                 { flagCountry: 'cn', language: 'cn', title: '中国' },
                 { flagCountry: 'jp', language: 'jp', title: '日本語' }
             ]
-        }
+        };
     },
     computed: {
         isAuthenticated() {
             // return this.$store.getters.isAuthenticated
-            return false
+            return false;
         },
         filteredLanguage: function() {
-            return this.$i18n.locales.filter(i => i.code === this.$i18n.locale)
+            return this.$i18n.locales.filter(i => i.code === this.$i18n.locale);
         },
         availableLocales() {
-            return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+            return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
         }
     },
 
     methods: {
         logout() {
-            this.$auth.logout()
+            this.$auth.logout();
         }
     }
-}
+};
 </script>
 
 <style scoped>

@@ -87,13 +87,13 @@ export default {
         items: {
             type: Array,
             default() {
-                return []
+                return [];
             }
         },
         text: {
             type: Array,
             default() {
-                return []
+                return [];
             }
         }
     },
@@ -117,15 +117,15 @@ export default {
                     image: 'MasaratyPaint.jpg'
                 }
             ]
-        }
+        };
     },
     methods: {
         showRecipes(plan) {
             // this.$store.dispatch('getRecipes', plan)
-            return []
+            return [];
         }
     }
-}
+};
 </script>
 
 <style scoped>

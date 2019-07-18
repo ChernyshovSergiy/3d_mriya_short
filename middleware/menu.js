@@ -1,3 +1,3 @@
 export default function({ store }) {
-    store.dispatch('menu/getMenu')
+    store.dispatch('menu/getMenu');
 }

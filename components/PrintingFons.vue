@@ -44,7 +44,7 @@
 <script>
 export default {
     name: 'PrintingFons'
-}
+};
 </script>
 
 <style scoped></style>

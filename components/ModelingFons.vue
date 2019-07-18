@@ -49,9 +49,9 @@ export default {
                 'Models_Developed.svg',
                 'Printed_Products.svg'
             ]
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped></style>

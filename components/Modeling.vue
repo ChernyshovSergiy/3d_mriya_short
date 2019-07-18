@@ -41,7 +41,7 @@
                                             >
                                                 <v-flex xs12 md6>
                                                     <v-text-field
-                                                        v-model="form.name"
+                                                        v-model.trim="form.name"
                                                         prepend-icon="person"
                                                         name="name"
                                                         :label="`${$t('name')}`"
@@ -55,7 +55,9 @@
                                                 </v-flex>
                                                 <v-flex xs12 md6>
                                                     <v-text-field
-                                                        v-model="form.email"
+                                                        v-model.trim="
+                                                            form.email
+                                                        "
                                                         prepend-icon="email"
                                                         name="email"
                                                         :label="
@@ -76,9 +78,9 @@
                                                 align-space-around
                                                 fill-height
                                             >
-                                                <v-flex xs12 md11>
+                                                <v-flex xs11>
                                                     <v-text-field
-                                                        v-model="form.link"
+                                                        v-model.trim="form.link"
                                                         prepend-icon="link"
                                                         name="link"
                                                         :label="
@@ -94,7 +96,7 @@
                                                     >
                                                     </v-text-field>
                                                 </v-flex>
-                                                <v-flex xs12 md1 class="mt-3">
+                                                <v-flex xs1 class="mt-3">
                                                     <v-spacer />
                                                     <v-tooltip
                                                         bottom
@@ -105,16 +107,22 @@
                                                                 on
                                                             }"
                                                         >
-                                                            <span v-on="on"
-                                                                ><v-icon
-                                                                    :style="{
-                                                                        cursor:
-                                                                            'pointer'
-                                                                    }"
-                                                                    large
-                                                                    color="indigo darken-4"
-                                                                    >info</v-icon
-                                                                ></span
+                                                            <span v-on="on">
+                                                                <v-avatar
+                                                                    size="30"
+                                                                    color="grey lighten-4"
+                                                                    class="elevation-5"
+                                                                >
+                                                                    <v-icon
+                                                                        :style="{
+                                                                            cursor:
+                                                                                'pointer'
+                                                                        }"
+                                                                        large
+                                                                        color="indigo darken-4"
+                                                                        >info</v-icon
+                                                                    >
+                                                                </v-avatar></span
                                                             >
                                                         </template>
                                                         <span class="body-1">{{
@@ -153,16 +161,22 @@
                                                                 on
                                                             }"
                                                         >
-                                                            <span v-on="on"
-                                                                ><v-icon
-                                                                    :style="{
-                                                                        cursor:
-                                                                            'pointer'
-                                                                    }"
-                                                                    large
-                                                                    color="indigo darken-4"
-                                                                    >info</v-icon
-                                                                ></span
+                                                            <span v-on="on">
+                                                                <v-avatar
+                                                                    size="30"
+                                                                    color="grey lighten-4"
+                                                                    class="elevation-5"
+                                                                >
+                                                                    <v-icon
+                                                                        :style="{
+                                                                            cursor:
+                                                                                'pointer'
+                                                                        }"
+                                                                        large
+                                                                        color="indigo darken-4"
+                                                                        >info</v-icon
+                                                                    >
+                                                                </v-avatar></span
                                                             >
                                                         </template>
                                                         <span class="body-1">
@@ -233,7 +247,7 @@
 </template>
 
 <script>
-import { VTextField } from 'vuetify/lib'
+import { VTextField } from 'vuetify/lib';
 export default {
     name: 'Modeling',
     components: {
@@ -283,34 +297,37 @@ export default {
                 v => !!v || this.$t('link_is_required'),
                 v =>
                     /^(ftp|http|https):\/\/[^ "]+$/.test(v) ||
-                    this.$t('link_must_be_valid')
+                    this.$t('link_must_be_valid'),
+                v =>
+                    v.length <= 500 ||
+                    this.$t('link_must_be_less_than_500_characters')
             ]
-        }
+        };
     },
     methods: {
         async submit() {
             if (this.$refs.form.validate()) {
                 try {
-                    this.loading = true
-                    const self = this
-                    console.log(this.form)
+                    this.loading = true;
+                    const self = this;
+                    // console.log(this.form);
                     await this.$axios
                         .post('/order/modeling', this.form)
                         .then(response => {
                             // console.log('1', response.data.errors.email[0])
-                            self.snackbar = true
-                            self.form.name = ''
-                            self.form.email = ''
-                            self.form.link = ''
-                            self.form.checkbox = false
-                            self.loading = false
-                            self.$refs.form.resetValidation()
+                            self.snackbar = true;
+                            self.form.name = '';
+                            self.form.email = '';
+                            self.form.link = '';
+                            self.form.checkbox = false;
+                            self.loading = false;
+                            self.$refs.form.resetValidation();
                         })
                         .catch(err => {
-                            console.log('err11 ', err)
-                            self.snackbarError = true
-                            self.loading = false
-                        })
+                            console.log('err11 ', err);
+                            self.snackbarError = true;
+                            self.loading = false;
+                        });
                     // setTimeout(function() {
                     //     self.snackbar = true
                     //     self.form.name = ''
@@ -324,7 +341,7 @@ export default {
             }
         }
     }
-}
+};
 </script>
 
 <style scoped></style>

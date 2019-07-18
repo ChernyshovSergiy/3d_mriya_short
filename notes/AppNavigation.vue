@@ -224,40 +224,40 @@ export default {
                 { flagCountry: 'cn', language: 'cn', title: '中国' },
                 { flagCountry: 'jp', language: 'jp', title: '日本語' }
             ]
-        }
+        };
     },
     computed: {
         isAuthenticated() {
             // return this.$store.getters.isAuthenticated
-            return false
+            return false;
         },
         locales() {
             // console.log(this.$store.state.lang.locales)
-            return this.$store.state.lang.locales
+            return this.$store.state.lang.locales;
         },
         locale() {
             // console.log(this.$store.state.lang.locale)
-            return this.$store.state.lang.locale
+            return this.$store.state.lang.locale;
         },
         filteredLanguage: function() {
-            const lang = this.$store.state.lang.locale
+            const lang = this.$store.state.lang.locale;
             return this.languages.filter(function(elem) {
-                if (lang === '') return true
-                else return elem.language.indexOf(lang) > -1
-            })
+                if (lang === '') return true;
+                else return elem.language.indexOf(lang) > -1;
+            });
         }
     },
 
     methods: {
         logout() {
-            this.$auth.logout()
+            this.$auth.logout();
         },
         changeLanguage(locale) {
-            this.$store.dispatch('lang/setLanguage', locale)
-            console.log(this.$store.getters['lang/locale'])
+            this.$store.dispatch('lang/setLanguage', locale);
+            // console.log(this.$store.getters['lang/locale']);
         }
     }
-}
+};
 </script>
 
 <style scoped>

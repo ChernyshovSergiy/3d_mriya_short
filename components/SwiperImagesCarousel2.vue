@@ -144,23 +144,23 @@ export default {
                 }
             ],
             index: null
-        }
+        };
     },
     methods: {
         appendSlide() {
-            this.swiperSlides.push(this.swiperSlides.length + 1)
+            this.swiperSlides.push(this.swiperSlides.length + 1);
         },
         prependSlide() {
-            this.swiperSlides.unshift(this.swiperSlides[0] - 1)
+            this.swiperSlides.unshift(this.swiperSlides[0] - 1);
         },
         popSlide() {
-            this.swiperSlides.pop()
+            this.swiperSlides.pop();
         },
         shiftSlide() {
-            this.swiperSlides.shift()
+            this.swiperSlides.shift();
         }
     }
-}
+};
 </script>
 
 <style scoped>

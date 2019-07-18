@@ -30,20 +30,20 @@ export default {
 
     methods: {
         onScroll(e) {
-            console.log(e.target.scrollTop)
-            if (typeof window === 'undefined') return
+            console.log(e.target.scrollTop);
+            if (typeof window === 'undefined') return;
 
             const top =
-                window.pageYOffset || document.documentElement.offsetTop || 10
+                window.pageYOffset || document.documentElement.offsetTop || 10;
 
-            this.fab = top > 30
+            this.fab = top > 30;
         },
         toTop() {
-            this.$router.push({ hash: '' })
-            this.$vuetify.goTo(0)
+            this.$router.push({ hash: '' });
+            this.$vuetify.goTo(0);
         }
     }
-}
+};
 </script>
 
 <style scoped></style>

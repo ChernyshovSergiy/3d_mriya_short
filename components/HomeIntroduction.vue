@@ -31,11 +31,11 @@ export default {
         text: {
             type: Array,
             default() {
-                return []
+                return [];
             }
         }
     }
-}
+};
 </script>
 
 <style scoped></style>

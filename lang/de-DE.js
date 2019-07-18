@@ -65,9 +65,62 @@ export default {
     close: 'Schließen',
     link_is_required: 'Link ist erforderlich',
     link_must_be_valid: 'Der Link muss gültig sein',
+    link_must_be_less_than_500_characters:
+        'Der Link darf nicht länger als 500 Zeichen sein',
     desc_google_folder:
         'Dieses Feld dient als Link zu dem Ordner mit Ihren Materialien.\n' +
         'Erstellen Sie einen Ordner auf Google Disk und laden Sie Materialien (Beschreibung, Zeichnungen, Fotos, Texturen ...) in diesen Ordner hoch.',
     rendering_info:
-        'Für den 3D-Druck eines Produkts wird nur ein polygonales Modell benötigt. Textur und Visualisierung können zusätzlich für die weitere korrekte Reihenfolge der gemalten Liste des Druckprodukts bestellt werden, sind jedoch mit zusätzlichen finanziellen Kosten verbunden.'
-}
+        'Für den 3D-Druck eines Produkts wird nur ein polygonales Modell benötigt. Textur und Visualisierung können zusätzlich für die weitere korrekte Reihenfolge der gemalten Liste des Druckprodukts bestellt werden, sind jedoch mit zusätzlichen finanziellen Kosten verbunden.',
+    confirm_order:
+        'Ihre Bestellung wurde erfolgreich bestätigt. Unsere Spezialisten werden Sie so schnell wie möglich kontaktieren.',
+    error_confirm_order:
+        'Bei der Bestätigung der Bestellung ist ein Fehler aufgetreten. Um das Problem zu lösen, senden Sie uns eine Nachricht (mit der Bestellnummer) an die E-Mail: ',
+
+    // 3D Printing
+    link_printing_order:
+        'Link zum STL 3D-Modell, das auf Google Disk hochgeladen wurde*',
+    desc_google_stl:
+        'Laden Sie ein 3D-Modell im * .stl-Format auf Google Disk hoch. Öffnen Sie den Link und geben Sie den Link in dieses Feld ein',
+    hollow: 'Hohl',
+    size: 'Sammlungsgröße',
+    measure_miniature:
+        'Militärische Sammlungsminiaturen werden von der Fußsohle bis zur Kopfspitze gemessen',
+    height: 'Höhe (in millimeter)',
+    over_height:
+        'Geben Sie die Höhe (in Millimetern) vom unteren bis zum oberen Punkt der Miniaturansicht an. Die Höhe muss mindestens 25 Millimeter und höchstens 185 Millimeter betragen',
+    height_is_required: 'Geben Sie die Höhe an',
+    height_must_be_numeric: 'Die Höhe muss numerisch sein',
+    height_must_be_more_25_millimeters:
+        'Die Höhe muss mindestens 25 mm betragen',
+    height_must_be_less_185_millimeters:
+        'Die Höhe darf 185 Millimeter nicht überschreiten',
+    height_must_be_less_than_4_numbers:
+        'Die Höhe muss weniger als 4 Stellen betragen',
+    hollow_info:
+        'Um die gewünschten Kosten zu erzielen, kann das gedruckte Modell hohl sein, wobei bei bestimmten technischen Parametern dieser Faktor die Festigkeit des Druckerzeugnisses nicht beeinträchtigt.',
+    supports: 'Unterstützt',
+    supports_info:
+        'Eine korrekt installierte Unterstützung ist sehr wichtig für den korrekten 3D-Druck des Produkts. Wenn Ihr * .stl-Modell bereits Unterstützung bietet, müssen Sie dieses Kontrollkästchen nicht aktivieren',
+    post_processing: 'Post Processing',
+    post_processing_info:
+        'Nachdem der 3D-Druck abgeschlossen ist, müssen die Stützen korrekt entfernt und ihre Verbindungen poliert werden. Wenn Sie es selbst tun möchten, müssen Sie dieses Kontrollkästchen nicht aktivieren',
+    material: 'Material',
+    material_info: 'Wählen Sie das Material aus, um Ihr Produkt zu drucken',
+    plastic: 'Kunststoff',
+    metal: 'Metall',
+    quality: 'Qualität',
+    quality_info:
+        'Wählen Sie die Dicke der Druckebene. Je dünner die Schicht, desto höher ist die Qualität des Druckerzeugnisses, desto höher ist jedoch der Preis des Endprodukts',
+    micron: 'mikron',
+    size_is_required: 'Sie müssen eine Größe auswählen',
+    material_is_required: 'Material wird benötigt',
+    quality_is_required: 'Qualität erforderlich',
+    quantity_is_required: 'Menge ist erforderlich',
+    quantity_must_be_numeric: 'Quantität muss numerisch sein',
+    quantity_must_be_less_than_6_numbers:
+        'Die Nummer muss kleiner als 6 Ziffern sein',
+    quantity: 'Menge (in Stück)',
+    other: 'Andere',
+    order_3dPrinting: '3D-Druck bestellen'
+};

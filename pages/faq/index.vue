@@ -15,9 +15,9 @@ export default {
     data() {
         return {
             title: 'This is FAQ page'
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped></style>

@@ -15,9 +15,9 @@ export default {
     data() {
         return {
             title: 'This is International reseller page'
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped></style>

@@ -15,9 +15,9 @@ export default {
     data() {
         return {
             title: 'This is Careers page'
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped></style>

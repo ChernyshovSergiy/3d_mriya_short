@@ -7,7 +7,7 @@
 <script>
 export default {
     name: 'Printing'
-}
+};
 </script>
 
 <style scoped></style>

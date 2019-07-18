@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import Vue from 'vue';
+import { mapGetters } from 'vuex';
 
 const Validation = {
     install(Vue, options) {
@@ -9,8 +9,8 @@ const Validation = {
                     errors: 'validation/errors'
                 })
             }
-        })
+        });
     }
-}
+};
 
-Vue.use(Validation)
+Vue.use(Validation);
