@@ -138,13 +138,26 @@
                                                     <v-flex xs11>
                                                         <v-select
                                                             v-model="form.size"
+                                                            :hint="
+                                                                `${
+                                                                    form.size
+                                                                        .value
+                                                                }, ${
+                                                                    form.size.id
+                                                                }`
+                                                            "
                                                             prepend-icon="aspect_ratio"
                                                             :items="sizes"
+                                                            item-text="value"
+                                                            item-value="id"
                                                             :rules="sizesRules"
                                                             :label="
                                                                 `${$t('size')}`
                                                             "
                                                             required
+                                                            persistent-hint
+                                                            return-object
+                                                            single-line
                                                         ></v-select>
                                                     </v-flex>
                                                     <v-flex xs1 class="mt-3">
@@ -197,13 +210,26 @@
                                                     <v-flex xs11 md4>
                                                         <v-select
                                                             v-model="form.size"
+                                                            :hint="
+                                                                `${
+                                                                    form.size
+                                                                        .value
+                                                                }, ${
+                                                                    form.size.id
+                                                                }`
+                                                            "
                                                             prepend-icon="aspect_ratio"
                                                             :items="sizes"
+                                                            item-text="value"
+                                                            item-value="id"
                                                             :rules="sizesRules"
                                                             :label="
                                                                 `${$t('size')}`
                                                             "
                                                             required
+                                                            persistent-hint
+                                                            return-object
+                                                            single-line
                                                         ></v-select>
                                                     </v-flex>
                                                     <v-flex xs1 class="mt-3">
@@ -623,12 +649,26 @@
                                                 fill-height
                                             >
                                                 <v-flex xs12 sm5>
-                                                    <v-select
+                                                    <v-autocomplete
                                                         v-model="
                                                             form.selectCountry
                                                         "
+                                                        :hint="
+                                                            `${
+                                                                form
+                                                                    .selectCountry
+                                                                    .country_name
+                                                            }, ${
+                                                                form
+                                                                    .selectCountry
+                                                                    .country_alpha2_code
+                                                            }`
+                                                        "
                                                         prepend-icon="language"
                                                         :items="countries"
+                                                        :filter="customFilter"
+                                                        item-text="country_name"
+                                                        item-value="country_alpha2_code"
                                                         :rules="
                                                             selectCountryRules
                                                         "
@@ -636,25 +676,90 @@
                                                             `${$t('country')}`
                                                         "
                                                         required
-                                                    ></v-select>
+                                                        persistent-hint
+                                                        return-object
+                                                        single-line
+                                                    ></v-autocomplete>
                                                 </v-flex>
                                                 <v-spacer />
                                                 <v-flex xs12 sm5>
                                                     <v-text-field
                                                         v-model.trim="
-                                                            form.quantity
+                                                            form.zipCode
                                                         "
-                                                        prepend-icon="shopping_basket"
-                                                        name="quantity"
-                                                        :label="
-                                                            `${$t('quantity')}`
+                                                        :disabled="
+                                                            checkCountrySelect
                                                         "
-                                                        type="quantity"
-                                                        :rules="quantityRules"
-                                                        data-cy="joinNameField"
+                                                        prepend-icon="flag"
+                                                        name="zip"
+                                                        :label="`${$t('zip')}`"
+                                                        type="zip"
+                                                        :rules="zipRules"
+                                                        data-cy="modelingZipCodeField"
+                                                        validate-on-blur
                                                         required
+                                                        :value="
+                                                            form.currentValue
+                                                        "
+                                                        return-masked-value
+                                                        :hint="hintZip"
+                                                        persistent-hint
+                                                        :mask="zipMask"
+                                                        @input="form.zip"
                                                     >
                                                     </v-text-field>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout
+                                                row
+                                                wrap
+                                                align-space-around
+                                                fill-height
+                                            >
+                                                <v-flex xs12 sm5>
+                                                    <v-text-field
+                                                        v-model.trim="
+                                                            form.state
+                                                        "
+                                                        :disabled="
+                                                            checkZipCodeSelect
+                                                        "
+                                                        prepend-icon="location_on"
+                                                        name="state"
+                                                        :label="
+                                                            `${$t('state')}`
+                                                        "
+                                                        type="state"
+                                                    >
+                                                    </v-text-field>
+                                                </v-flex>
+                                                <v-spacer />
+                                                <v-flex xs12 sm5>
+                                                    <v-select
+                                                        v-model.trim="city"
+                                                        :disabled="
+                                                            checkZipCodeSelect
+                                                        "
+                                                        :hint="
+                                                            `${
+                                                                form.selectCity
+                                                                    .place_name
+                                                            }, ${
+                                                                form.selectCity
+                                                                    .state_abbreviation
+                                                            }`
+                                                        "
+                                                        prepend-icon="location_city"
+                                                        :items="cities"
+                                                        item-text="place name"
+                                                        item-value="state abbreviation"
+                                                        :label="`${$t('city')}`"
+                                                        required
+                                                        persistent-hint
+                                                        return-object
+                                                        single-line
+                                                    >
+                                                    </v-select>
                                                 </v-flex>
                                             </v-layout>
                                             <v-card-actions class="my-auto">
@@ -723,13 +828,15 @@
 </template>
 
 <script>
-import { VTextField, VSelect } from 'vuetify/lib';
+import axios from 'axios';
+import { VTextField, VSelect, VAutocomplete } from 'vuetify/lib';
 
 export default {
     name: 'Printing',
     components: {
         VTextField,
-        VSelect
+        VSelect,
+        VAutocomplete
     },
     props: {
         title: {
@@ -753,19 +860,41 @@ export default {
             snackbarError: false,
             loading: false,
             timeout: 10000,
+            zipFlag: 'checkChange',
+            zipFlagChange: 'checkZipCodeChange',
+            zipMask: '',
+            zipRange: '',
+            zipCharacters: '8',
+            cities: [],
             form: {
                 name: '',
                 email: '',
                 link: '',
-                size: '54mm (2 1/4") 1:32',
+                zipCode: '',
+                size: {
+                    id: 3,
+                    value: '54mm (2 1/4") 1:32'
+                },
                 height: '25',
+                currentValue: 11111,
                 checkboxHollow: true,
                 checkboxSupport: false,
                 checkboxPostProcessing: false,
                 quantity: '1',
                 selectMaterial: this.$t('plastic'),
                 selectQuality: '30 ' + this.$t('micron'),
-                selectCountry: '',
+                selectCountry: {
+                    country_alpha2_code: '',
+                    country_name: ''
+                },
+                selectCity: {
+                    latitude: '',
+                    longitude: '',
+                    place_name: '',
+                    state: '',
+                    state_abbreviation: ''
+                },
+                state: '',
                 cLang: this.$i18n.locale
             },
             nameRules: [
@@ -806,7 +935,10 @@ export default {
             ],
             selectMaterialRules: [v => !!v || this.$t('material_is_required')],
             selectQualityRules: [v => !!v || this.$t('quality_is_required')],
-            selectCountryRules: [v => !!v || this.$t('country_is_required')],
+            selectCountryRules: [
+                v => v.country_name !== '' || this.$t('country_is_required')
+            ],
+            zipRules: [v => !!v || this.$t('zip_is_required')],
             quantityRules: [
                 v => !!v || this.$t('quantity_is_required'),
                 v => /^\d+$/.test(v) || this.$t('quantity_must_be_numeric'),
@@ -814,24 +946,27 @@ export default {
                     v.length <= 6 ||
                     this.$t('quantity_must_be_less_than_6_numbers')
             ],
-            sizes: [
-                '25mm (1") 1:72',
-                '40mm (1 1/2") 1:45',
-                '54mm (2 1/4") 1:32',
-                '60mm (2 1/2") 1:30',
-                '70mm (2 3/4") 1:25',
-                '75mm (3") 1:24',
-                this.$t('other')
-            ],
-            // sizes: [
-            //     {id:1, value:'25mm (1") 1:72'},
-            //     {id:2, value:'40mm (1 1/2") 1:45'},
-            //     {id:3, value:'54mm (2 1/4") 1:32'},
-            //     {id:4, value:'60mm (2 1/2") 1:30'},
-            //     {id:5, value:'70mm (2 3/4") 1:25'},
-            //     {id:6, value:'75mm (3") 1:24'},
-            //     {id:0, value:this.$t('other')}
+            // cityRules: [
+            //     v => !!v || this.$t('city_is_required'),
+            //     v =>
+            //         /^[a-zA-Z0-9А-Яа-я_]+( [a-zA-Z0-9А-Яа-я_]+)*$/.test(v) ||
+            //         this.$t('city_must_be_word'),
+            //     v =>
+            //         v.length >= 1 ||
+            //         this.$t('city_must_be_greater_than_1_characters'),
+            //     v =>
+            //         v.length <= 90 ||
+            //         this.$t('city_must_be_less_than_90_characters')
             // ],
+            sizes: [
+                { id: 1, value: '25mm (1") 1:72' },
+                { id: 2, value: '40mm (1 1/2") 1:45' },
+                { id: 3, value: '54mm (2 1/4") 1:32' },
+                { id: 4, value: '60mm (2 1/2") 1:30' },
+                { id: 5, value: '70mm (2 3/4") 1:25' },
+                { id: 6, value: '75mm (3") 1:24' },
+                { id: 0, value: this.$t('other') }
+            ],
             materials: [this.$t('plastic'), this.$t('metal')],
             quality: [
                 '30 ' + this.$t('micron'),
@@ -841,17 +976,108 @@ export default {
         };
     },
     computed: {
+        city() {
+            return this.cities[0];
+        },
+        hintZip() {
+            if (this.zipRange !== '') {
+                return this.$t('range') + ' ' + this.zipRange;
+            } else {
+                return this.$t('range') + ' ' + this.$t('not_determined');
+            }
+        },
+        checkChange() {
+            return (
+                this.form.selectCountry.country_alpha2_code +
+                this.form.selectCountry.country_name
+            );
+        },
+        checkCountrySelect() {
+            return this.form.selectCountry.country_name === '';
+        },
+        checkZipCodeSelect() {
+            return this.form.zipCode === '';
+        },
+        checkZipCodeChange() {
+            return this.form.zipCode;
+        },
         other() {
-            return this.form.size === this.$t('other');
+            return this.form.size.id === 0;
         },
         dynamicRules() {
-            if (this.form.size === this.$t('other')) {
+            if (this.form.size.id === 0) {
                 return this.heightRules;
             }
             return [];
         }
     },
+    watch: {
+        checkChange: async function(newValue, oldValue) {
+            try {
+                this.$refs.form.resetValidation();
+                this.zipMask = '';
+                this.zipRange = '';
+                this.form.zipCode = '';
+                this.form.state = '';
+                this.form.city = '';
+                const local = this.form.selectCountry.country_alpha2_code;
+                const apiUrl = 'http://127.0.0.1:9090/api/v1/order/masks';
+                await axios
+                    .post(apiUrl, {
+                        country_alpha2_code: local
+                    })
+                    .then(response => {
+                        this.zipMask = response.data.data.mask;
+                        this.zipRange = response.data.data.range;
+                        this.zipCharacters = response.data.data.characters;
+                    })
+                    .catch(e => {
+                        console.log('This is get mask error: ' + e);
+                        this.zipCharacters = '100';
+                    });
+            } catch (e) {}
+        },
+
+        checkZipCodeChange: async function(newValue, oldValue) {
+            console.log(
+                Number(this.zipCharacters),
+                ' ',
+                this.form.zipCode.length
+            );
+            if (this.form.zipCode.length === Number(this.zipCharacters)) {
+                try {
+                    this.$refs.form.resetValidation();
+                    this.form.state = '';
+                    this.form.city = '';
+                    const local = this.form.selectCountry.country_alpha2_code;
+                    const apiUrlZ =
+                        'http://api.zippopotam.us/' +
+                        local +
+                        '/' +
+                        this.form.zipCode;
+                    await axios
+                        .get(apiUrlZ)
+                        .then(response => {
+                            this.cities = response.data.places;
+                        })
+                        .catch(e => {
+                            console.log('This is get mask error: ' + e);
+                        });
+                } catch (e) {}
+            }
+        }
+    },
     methods: {
+        customFilter(item, queryText, itemText) {
+            const textOne = item.country_name.toLowerCase();
+            const textTwo = item.country_alpha2_code.toLowerCase();
+            const searchText = queryText.toLowerCase();
+
+            return (
+                textOne.indexOf(searchText) > -1 ||
+                textTwo.indexOf(searchText) > -1
+            );
+        },
         submit() {
             if (this.$refs.form.validate()) {
                 try {

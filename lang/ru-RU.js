@@ -122,5 +122,17 @@ export default {
     order_3dPrinting: 'заказать 3D Печать',
     recipient_address_title: 'Введите адрес получателя',
     country: 'Страна / место',
-    country_is_required: 'Выберите страну'
+    country_is_required: 'Выберите страну',
+    zip: 'Почтовый индекс',
+    zip_is_required: 'Почтовый индекс обязателен',
+    range: 'Диапазон и формат индекса:',
+    not_determined: 'не определен',
+    state: 'Штат (Область)',
+    city: 'Город (район / населенный пункт)',
+    city_is_required: 'Населенный пункт обязателен',
+    city_must_be_word: 'Населенный пункт должен быть словом',
+    city_must_be_greater_than_1_characters:
+        'Нозвание населенного пункта должно быть не мение 1 буквы',
+    city_must_be_less_than_90_characters:
+        'Нозвание населенного пункта должно быть не более 90 букв'
 };

@@ -121,7 +121,7 @@ export default {
             this.PaintingTitle = res.data.data.painting_text.headline;
             this.PaintingText = res.data.data.painting_text.text;
             this.countryList = countries.data.data;
-            console.log('список стран: ', this.countryList);
+            // console.log('список стран: ', this.countryList);
         } catch (e) {
             console.log(e);
         }
