@@ -666,7 +666,9 @@
                                                         "
                                                         prepend-icon="language"
                                                         :items="countries"
-                                                        :filter="customFilter"
+                                                        :filter="
+                                                            customFilterCountry
+                                                        "
                                                         item-text="country_name"
                                                         item-value="country_alpha2_code"
                                                         :rules="
@@ -735,8 +737,24 @@
                                                 </v-flex>
                                                 <v-spacer />
                                                 <v-flex xs12 sm5>
+                                                    <v-text-field
+                                                        v-if="!zipGet"
+                                                        v-model.trim="form.city"
+                                                        :disabled="
+                                                            checkZipCodeSelect
+                                                        "
+                                                        prepend-icon="location_city"
+                                                        name="city"
+                                                        :rules="cityRules"
+                                                        :label="`${$t('city')}`"
+                                                        type="city"
+                                                    >
+                                                    </v-text-field>
                                                     <v-select
-                                                        v-model.trim="city"
+                                                        v-if="zipGet"
+                                                        v-model.trim="
+                                                            form.selectCity
+                                                        "
                                                         :disabled="
                                                             checkZipCodeSelect
                                                         "
@@ -751,8 +769,7 @@
                                                         "
                                                         prepend-icon="location_city"
                                                         :items="cities"
-                                                        item-text="place name"
-                                                        item-value="state abbreviation"
+                                                        item-text="place_name"
                                                         :label="`${$t('city')}`"
                                                         required
                                                         persistent-hint
@@ -760,6 +777,50 @@
                                                         single-line
                                                     >
                                                     </v-select>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout
+                                                row
+                                                wrap
+                                                align-space-around
+                                                fill-height
+                                            >
+                                                <v-flex xs12 sm5>
+                                                    <v-text-field
+                                                        v-model.trim="
+                                                            form.address
+                                                        "
+                                                        :disabled="
+                                                            checkZipCodeSelect
+                                                        "
+                                                        prepend-icon="where_to_vote"
+                                                        name="address"
+                                                        :label="
+                                                            `${$t('address')}`
+                                                        "
+                                                        type="address"
+                                                    >
+                                                    </v-text-field>
+                                                </v-flex>
+                                                <v-spacer />
+                                                <v-flex xs12 sm5>
+                                                    <v-text-field
+                                                        v-model.trim="
+                                                            form.phone
+                                                        "
+                                                        :disabled="
+                                                            checkZipCodeSelect
+                                                        "
+                                                        prepend-icon="phone_iphone"
+                                                        name="phone"
+                                                        :rules="phoneRules"
+                                                        :label="
+                                                            `${$t('phone')}`
+                                                        "
+                                                        :mask="maskPhone"
+                                                        type="phone"
+                                                    >
+                                                    </v-text-field>
                                                 </v-flex>
                                             </v-layout>
                                             <v-card-actions class="my-auto">
@@ -860,6 +921,8 @@ export default {
             snackbarError: false,
             loading: false,
             timeout: 10000,
+            zipGet: false,
+            maskPhone: 'phone',
             zipFlag: 'checkChange',
             zipFlagChange: 'checkZipCodeChange',
             zipMask: '',
@@ -876,7 +939,6 @@ export default {
                     value: '54mm (2 1/4") 1:32'
                 },
                 height: '25',
-                currentValue: 11111,
                 checkboxHollow: true,
                 checkboxSupport: false,
                 checkboxPostProcessing: false,
@@ -895,6 +957,9 @@ export default {
                     state_abbreviation: ''
                 },
                 state: '',
+                city: '',
+                address: '',
+                phone: '',
                 cLang: this.$i18n.locale
             },
             nameRules: [
@@ -946,18 +1011,25 @@ export default {
                     v.length <= 6 ||
                     this.$t('quantity_must_be_less_than_6_numbers')
             ],
-            // cityRules: [
-            //     v => !!v || this.$t('city_is_required'),
-            //     v =>
-            //         /^[a-zA-Z0-9А-Яа-я_]+( [a-zA-Z0-9А-Яа-я_]+)*$/.test(v) ||
-            //         this.$t('city_must_be_word'),
-            //     v =>
-            //         v.length >= 1 ||
-            //         this.$t('city_must_be_greater_than_1_characters'),
-            //     v =>
-            //         v.length <= 90 ||
-            //         this.$t('city_must_be_less_than_90_characters')
-            // ],
+            cityRules: [
+                v => !!v || this.$t('city_is_required'),
+                v =>
+                    /^[a-zA-Z0-9А-Яа-я_]+( [a-zA-Z0-9А-Яа-я_]+)*$/.test(v) ||
+                    this.$t('city_must_be_word'),
+                v =>
+                    v.length >= 1 ||
+                    this.$t('city_must_be_greater_than_1_characters'),
+                v =>
+                    v.length <= 90 ||
+                    this.$t('city_must_be_less_than_90_characters')
+            ],
+            phoneRules: [
+                v => !!v || this.$t('phone_is_required'),
+                v =>
+                    /^[+]?(?:\(\d+(?:\.\d+)?\)|\d+(?:\.\d+)?)(?:[ -]?(?:\(\d+(?:\.\d+)?\)|\d+(?:\.\d+)?))*(?:[ ]?(?:x|ext)\.?[ ]?\d{1,5})?$/.test(
+                        v
+                    ) || this.$t('phone_number_must_be_digital')
+            ],
             sizes: [
                 { id: 1, value: '25mm (1") 1:72' },
                 { id: 2, value: '40mm (1 1/2") 1:45' },
@@ -976,9 +1048,6 @@ export default {
         };
     },
     computed: {
-        city() {
-            return this.cities[0];
-        },
         hintZip() {
             if (this.zipRange !== '') {
                 return this.$t('range') + ' ' + this.zipRange;
@@ -1018,6 +1087,11 @@ export default {
                 this.zipMask = '';
                 this.zipRange = '';
                 this.form.zipCode = '';
+                this.form.selectCity.latitude = '';
+                this.form.selectCity.longitude = '';
+                this.form.selectCity.state = '';
+                this.form.selectCity.state_abbreviation = '';
+                this.form.selectCity.place_name = '';
                 this.form.state = '';
                 this.form.city = '';
                 const local = this.form.selectCountry.country_alpha2_code;
@@ -1030,10 +1104,14 @@ export default {
                         this.zipMask = response.data.data.mask;
                         this.zipRange = response.data.data.range;
                         this.zipCharacters = response.data.data.characters;
+                        this.zipGet = true;
                     })
                     .catch(e => {
-                        console.log('This is get mask error: ' + e);
-                        this.zipCharacters = '100';
+                        console.log('This is get mask!!! error: ' + e);
+                        this.zipMask = '';
+                        this.zipRange = '';
+                        this.zipCharacters = '';
+                        this.zipGet = false;
                     });
             } catch (e) {}
         },
@@ -1044,11 +1122,19 @@ export default {
                 ' ',
                 this.form.zipCode.length
             );
-            if (this.form.zipCode.length === Number(this.zipCharacters)) {
+            if (
+                this.zipGet &&
+                this.form.zipCode.length >= Number(this.zipCharacters)
+            ) {
                 try {
                     this.$refs.form.resetValidation();
+                    this.cities = [];
+                    this.form.selectCity.latitude = '';
+                    this.form.selectCity.longitude = '';
+                    this.form.selectCity.state = '';
+                    this.form.selectCity.state_abbreviation = '';
+                    this.form.selectCity.place_name = '';
                     this.form.state = '';
-                    this.form.city = '';
                     const local = this.form.selectCountry.country_alpha2_code;
                     const apiUrlZ =
                         'http://api.zippopotam.us/' +
@@ -1058,17 +1144,45 @@ export default {
                     await axios
                         .get(apiUrlZ)
                         .then(response => {
-                            this.cities = response.data.places;
+                            const self = this;
+                            function changeKey(object) {
+                                const position = {};
+                                position.latitude = object.latitude;
+                                position.longitude = object.longitude;
+                                position.state = object.state;
+                                position.state_abbreviation =
+                                    object['state abbreviation'];
+                                position.place_name = object['place name'];
+                                self.cities.push(position);
+                            }
+                            const places = response.data.places;
+
+                            places.forEach(changeKey);
+                            this.form.selectCity.latitude =
+                                response.data.places[0].latitude;
+                            this.form.selectCity.longitude =
+                                response.data.places[0].longitude;
+                            this.form.selectCity.state =
+                                response.data.places[0].state;
+                            this.form.selectCity.state_abbreviation =
+                                response.data.places[0]['state abbreviation'];
+                            this.form.selectCity.place_name =
+                                response.data.places[0]['place name'];
+                            this.form.state = this.form.selectCity.state;
+
+                            console.log('Полный список: ', this.cities);
                         })
                         .catch(e => {
-                            console.log('This is get mask error: ' + e);
+                            console.log('This is get zippopotam error: ' + e);
                         });
-                } catch (e) {}
+                } catch (e) {
+                    console.log('This is not enough: ' + e);
+                }
             }
         }
     },
     methods: {
-        customFilter(item, queryText, itemText) {
+        customFilterCountry(item, queryText, itemText) {
             const textOne = item.country_name.toLowerCase();
             const textTwo = item.country_alpha2_code.toLowerCase();
             const searchText = queryText.toLowerCase();

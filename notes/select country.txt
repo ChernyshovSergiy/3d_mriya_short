@@ -69,3 +69,11 @@
         </v-text-field>
     </v-flex>
 </v-layout>
+
+selectCity: {
+        latitude: this.cities[0].latitude ? this.cities[0].latitude : '',
+        longitude: this.cities[0].longitude ? this.cities[0].longitude : '',
+        place_name: this.cities[0]['place name'] ? this.cities[0]['place name'] : '',
+        state: this.cities[0].state ? this.cities[0].state : '',
+        state_abbreviation: this.cities[0]['state abbreviation'] ? this.cities[0]['state abbreviation'] : ''
+    },
