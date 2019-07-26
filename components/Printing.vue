@@ -10,9 +10,9 @@
                         <v-responsive>
                             <v-img
                                 :src="
-                                    require('@/assets/images/convert_cube.svg')
+                                    require('@/assets/images/convert_longer4.svg')
                                 "
-                                width="auto"
+                                height="auto"
                             >
                                 <v-layout
                                     align-center
@@ -61,7 +61,7 @@
                                                         :rules="emailRules"
                                                         data-cy="joinEmailField"
                                                         required
-                                                        autocomplete="email"
+                                                        browser-autocomplete="email"
                                                     >
                                                     </v-text-field>
                                                 </v-flex>
@@ -137,14 +137,11 @@
                                                 >
                                                     <v-flex xs11>
                                                         <v-select
-                                                            v-model="form.size"
+                                                            v-model="size"
                                                             :hint="
                                                                 `${
-                                                                    form.size
-                                                                        .value
-                                                                }, ${
-                                                                    form.size.id
-                                                                }`
+                                                                    size.value
+                                                                }, ${size.id}`
                                                             "
                                                             prepend-icon="aspect_ratio"
                                                             :items="sizes"
@@ -157,7 +154,6 @@
                                                             required
                                                             persistent-hint
                                                             return-object
-                                                            single-line
                                                         ></v-select>
                                                     </v-flex>
                                                     <v-flex xs1 class="mt-3">
@@ -209,14 +205,11 @@
                                                 >
                                                     <v-flex xs11 md4>
                                                         <v-select
-                                                            v-model="form.size"
+                                                            v-model="size"
                                                             :hint="
                                                                 `${
-                                                                    form.size
-                                                                        .value
-                                                                }, ${
-                                                                    form.size.id
-                                                                }`
+                                                                    size.value
+                                                                }, ${size.id}`
                                                             "
                                                             prepend-icon="aspect_ratio"
                                                             :items="sizes"
@@ -229,7 +222,6 @@
                                                             required
                                                             persistent-hint
                                                             return-object
-                                                            single-line
                                                         ></v-select>
                                                     </v-flex>
                                                     <v-flex xs1 class="mt-3">
@@ -497,11 +489,10 @@
                                                 <v-spacer />
                                                 <v-flex xs11 sm4>
                                                     <v-select
-                                                        v-model="
-                                                            form.selectMaterial
-                                                        "
+                                                        v-model="selectMaterial"
                                                         prepend-icon="texture"
                                                         :items="materials"
+                                                        item-text="value"
                                                         :rules="
                                                             selectMaterialRules
                                                         "
@@ -509,6 +500,7 @@
                                                             `${$t('material')}`
                                                         "
                                                         required
+                                                        return-object
                                                     ></v-select>
                                                 </v-flex>
                                                 <v-flex xs1 class="mt-3">
@@ -557,11 +549,10 @@
                                             >
                                                 <v-flex xs11 sm4>
                                                     <v-select
-                                                        v-model="
-                                                            form.selectQuality
-                                                        "
+                                                        v-model="selectQuality"
                                                         prepend-icon="high_quality"
                                                         :items="quality"
+                                                        item-text="value"
                                                         :rules="
                                                             selectQualityRules
                                                         "
@@ -569,6 +560,7 @@
                                                             `${$t('quality')}`
                                                         "
                                                         required
+                                                        return-object
                                                     ></v-select>
                                                 </v-flex>
                                                 <v-flex xs1 class="mt-3">
@@ -621,6 +613,7 @@
                                                         "
                                                         type="quantity"
                                                         :rules="quantityRules"
+                                                        mask="######"
                                                         data-cy="joinNameField"
                                                         required
                                                     >
@@ -650,18 +643,12 @@
                                             >
                                                 <v-flex xs12 sm5>
                                                     <v-autocomplete
-                                                        v-model="
-                                                            form.selectCountry
-                                                        "
+                                                        v-model="selectCountry"
                                                         :hint="
                                                             `${
-                                                                form
-                                                                    .selectCountry
-                                                                    .country_name
+                                                                selectCountry.country_name
                                                             }, ${
-                                                                form
-                                                                    .selectCountry
-                                                                    .country_alpha2_code
+                                                                selectCountry.country_alpha2_code
                                                             }`
                                                         "
                                                         prepend-icon="language"
@@ -680,7 +667,6 @@
                                                         required
                                                         persistent-hint
                                                         return-object
-                                                        single-line
                                                     ></v-autocomplete>
                                                 </v-flex>
                                                 <v-spacer />
@@ -753,18 +739,16 @@
                                                     <v-select
                                                         v-if="zipGet"
                                                         v-model.trim="
-                                                            form.selectCity
+                                                            selectCity
                                                         "
                                                         :disabled="
                                                             checkZipCodeSelect
                                                         "
                                                         :hint="
                                                             `${
-                                                                form.selectCity
-                                                                    .place_name
+                                                                selectCity.place_name
                                                             }, ${
-                                                                form.selectCity
-                                                                    .state_abbreviation
+                                                                selectCity.state_abbreviation
                                                             }`
                                                         "
                                                         prepend-icon="location_city"
@@ -774,7 +758,6 @@
                                                         required
                                                         persistent-hint
                                                         return-object
-                                                        single-line
                                                     >
                                                     </v-select>
                                                 </v-flex>
@@ -795,6 +778,7 @@
                                                         "
                                                         prepend-icon="where_to_vote"
                                                         name="address"
+                                                        :rules="addressRules"
                                                         :label="
                                                             `${$t('address')}`
                                                         "
@@ -929,33 +913,46 @@ export default {
             zipRange: '',
             zipCharacters: '8',
             cities: [],
+            size: {
+                id: 3,
+                value: '54mm (2 1/4") 1:32'
+            },
+            selectCountry: {
+                country_alpha2_code: '',
+                country_name: ''
+            },
+            selectCity: {
+                latitude: '',
+                longitude: '',
+                place_name: '',
+                state: '',
+                state_abbreviation: ''
+            },
+            selectMaterial: {
+                id: 1,
+                value: this.$t('plastic')
+            },
+            selectQuality: {
+                id: 1,
+                value: '30 ' + this.$t('micron')
+            },
             form: {
                 name: '',
                 email: '',
                 link: '',
                 zipCode: '',
-                size: {
-                    id: 3,
-                    value: '54mm (2 1/4") 1:32'
-                },
-                height: '25',
+                sizeId: '',
+                height: 25,
                 checkboxHollow: true,
                 checkboxSupport: false,
                 checkboxPostProcessing: false,
-                quantity: '1',
-                selectMaterial: this.$t('plastic'),
-                selectQuality: '30 ' + this.$t('micron'),
-                selectCountry: {
-                    country_alpha2_code: '',
-                    country_name: ''
-                },
-                selectCity: {
-                    latitude: '',
-                    longitude: '',
-                    place_name: '',
-                    state: '',
-                    state_abbreviation: ''
-                },
+                quantity: 1,
+                material: '',
+                quality: '',
+                country: '',
+                latitude: '',
+                longitude: '',
+                state_abbreviation: '',
                 state: '',
                 city: '',
                 address: '',
@@ -1008,7 +1005,7 @@ export default {
                 v => !!v || this.$t('quantity_is_required'),
                 v => /^\d+$/.test(v) || this.$t('quantity_must_be_numeric'),
                 v =>
-                    v.length <= 6 ||
+                    v <= 999999 ||
                     this.$t('quantity_must_be_less_than_6_numbers')
             ],
             cityRules: [
@@ -1023,12 +1020,15 @@ export default {
                     v.length <= 90 ||
                     this.$t('city_must_be_less_than_90_characters')
             ],
+            addressRules: [v => !!v || this.$t('address_is_required')],
             phoneRules: [
                 v => !!v || this.$t('phone_is_required'),
                 v =>
                     /^[+]?(?:\(\d+(?:\.\d+)?\)|\d+(?:\.\d+)?)(?:[ -]?(?:\(\d+(?:\.\d+)?\)|\d+(?:\.\d+)?))*(?:[ ]?(?:x|ext)\.?[ ]?\d{1,5})?$/.test(
                         v
-                    ) || this.$t('phone_number_must_be_digital')
+                    ) || this.$t('phone_number_must_be_digital'),
+                v =>
+                    v.length === 10 || this.$t('phone_number_must_be_10_digits')
             ],
             sizes: [
                 { id: 1, value: '25mm (1") 1:72' },
@@ -1039,11 +1039,14 @@ export default {
                 { id: 6, value: '75mm (3") 1:24' },
                 { id: 0, value: this.$t('other') }
             ],
-            materials: [this.$t('plastic'), this.$t('metal')],
+            materials: [
+                { id: 1, value: this.$t('plastic') },
+                { id: 2, value: this.$t('metal') }
+            ],
             quality: [
-                '30 ' + this.$t('micron'),
-                '50 ' + this.$t('micron'),
-                '100 ' + this.$t('micron')
+                { id: 1, value: '30 ' + this.$t('micron') },
+                { id: 2, value: '50 ' + this.$t('micron') },
+                { id: 3, value: '100 ' + this.$t('micron') }
             ]
         };
     },
@@ -1057,12 +1060,12 @@ export default {
         },
         checkChange() {
             return (
-                this.form.selectCountry.country_alpha2_code +
-                this.form.selectCountry.country_name
+                this.selectCountry.country_alpha2_code +
+                this.selectCountry.country_name
             );
         },
         checkCountrySelect() {
-            return this.form.selectCountry.country_name === '';
+            return this.selectCountry.country_name === '';
         },
         checkZipCodeSelect() {
             return this.form.zipCode === '';
@@ -1071,30 +1074,30 @@ export default {
             return this.form.zipCode;
         },
         other() {
-            return this.form.size.id === 0;
+            return this.size.id === 0;
         },
         dynamicRules() {
-            if (this.form.size.id === 0) {
+            if (this.size.id === 0) {
                 return this.heightRules;
             }
             return [];
         }
     },
     watch: {
-        checkChange: async function(newValue, oldValue) {
+        checkChange: async function() {
             try {
                 this.$refs.form.resetValidation();
                 this.zipMask = '';
                 this.zipRange = '';
                 this.form.zipCode = '';
-                this.form.selectCity.latitude = '';
-                this.form.selectCity.longitude = '';
-                this.form.selectCity.state = '';
-                this.form.selectCity.state_abbreviation = '';
-                this.form.selectCity.place_name = '';
+                this.selectCity.latitude = '';
+                this.selectCity.longitude = '';
+                this.selectCity.state = '';
+                this.selectCity.state_abbreviation = '';
+                this.selectCity.place_name = '';
                 this.form.state = '';
                 this.form.city = '';
-                const local = this.form.selectCountry.country_alpha2_code;
+                const local = this.selectCountry.country_alpha2_code;
                 const apiUrl = 'http://127.0.0.1:9090/api/v1/order/masks';
                 await axios
                     .post(apiUrl, {
@@ -1116,12 +1119,13 @@ export default {
             } catch (e) {}
         },
 
-        checkZipCodeChange: async function(newValue, oldValue) {
-            console.log(
-                Number(this.zipCharacters),
-                ' ',
-                this.form.zipCode.length
-            );
+        // checkZipCodeChange: async function(newValue, oldValue) {
+        checkZipCodeChange: async function() {
+            // console.log(
+            //     Number(this.zipCharacters),
+            //     ' ',
+            //     this.form.zipCode.length
+            // );
             if (
                 this.zipGet &&
                 this.form.zipCode.length >= Number(this.zipCharacters)
@@ -1129,13 +1133,13 @@ export default {
                 try {
                     this.$refs.form.resetValidation();
                     this.cities = [];
-                    this.form.selectCity.latitude = '';
-                    this.form.selectCity.longitude = '';
-                    this.form.selectCity.state = '';
-                    this.form.selectCity.state_abbreviation = '';
-                    this.form.selectCity.place_name = '';
+                    this.selectCity.latitude = '';
+                    this.selectCity.longitude = '';
+                    this.selectCity.state = '';
+                    this.selectCity.state_abbreviation = '';
+                    this.selectCity.place_name = '';
                     this.form.state = '';
-                    const local = this.form.selectCountry.country_alpha2_code;
+                    const local = this.selectCountry.country_alpha2_code;
                     const apiUrlZ =
                         'http://api.zippopotam.us/' +
                         local +
@@ -1158,19 +1162,19 @@ export default {
                             const places = response.data.places;
 
                             places.forEach(changeKey);
-                            this.form.selectCity.latitude =
+                            this.selectCity.latitude =
                                 response.data.places[0].latitude;
-                            this.form.selectCity.longitude =
+                            this.selectCity.longitude =
                                 response.data.places[0].longitude;
-                            this.form.selectCity.state =
+                            this.selectCity.state =
                                 response.data.places[0].state;
-                            this.form.selectCity.state_abbreviation =
+                            this.selectCity.state_abbreviation =
                                 response.data.places[0]['state abbreviation'];
-                            this.form.selectCity.place_name =
+                            this.selectCity.place_name =
                                 response.data.places[0]['place name'];
-                            this.form.state = this.form.selectCity.state;
+                            this.form.state = this.selectCity.state;
 
-                            console.log('Полный список: ', this.cities);
+                            // console.log('Полный список: ', this.cities);
                         })
                         .catch(e => {
                             console.log('This is get zippopotam error: ' + e);
@@ -1182,7 +1186,7 @@ export default {
         }
     },
     methods: {
-        customFilterCountry(item, queryText, itemText) {
+        customFilterCountry(item, queryText) {
             const textOne = item.country_name.toLowerCase();
             const textTwo = item.country_alpha2_code.toLowerCase();
             const searchText = queryText.toLowerCase();
@@ -1192,38 +1196,67 @@ export default {
                 textTwo.indexOf(searchText) > -1
             );
         },
-        submit() {
+        async submit() {
             if (this.$refs.form.validate()) {
                 try {
                     this.loading = true;
-                    // const self = this;
-                    console.log(this.form);
-                    // await this.$axios
-                    //     .post('/order/modeling', this.form)
-                    //     .then(response => {
-                    //         // console.log('1', response.data.errors.email[0])
-                    //         self.snackbar = true;
-                    //         self.form.name = '';
-                    //         self.form.email = '';
-                    //         self.form.link = '';
-                    //         self.form.checkbox = false;
-                    //         self.loading = false;
-                    //         self.$refs.form.resetValidation();
-                    //     })
-                    //     .catch(err => {
-                    //         console.log('err11 ', err);
-                    //         self.snackbarError = true;
-                    //         self.loading = false;
-                    //     });
-                    // setTimeout(function() {
-                    //     self.snackbar = true
-                    //     self.form.name = ''
-                    //     self.form.email = ''
-                    //     self.form.link = ''
-                    //     self.form.checkbox = false
-                    //     self.loading = false
-                    //     self.$refs.form.resetValidation()
-                    // }, this.timeout / 2)
+                    this.form.sizeId = this.size.id;
+                    if (this.form.sizeId !== 0) {
+                        this.form.height = 0;
+                    } else {
+                        this.form.height = Number(this.form.height);
+                    }
+                    this.form.country = this.selectCountry.country_alpha2_code;
+                    this.form.latitude = this.selectCity.latitude;
+                    this.form.longitude = this.selectCity.longitude;
+                    if (this.form.city === '') {
+                        this.form.city = this.selectCity.place_name;
+                    }
+                    this.form.state_abbreviation = this.selectCity.state_abbreviation;
+                    this.form.material = this.selectMaterial.id;
+                    this.form.quality = this.selectQuality.id;
+                    this.form.quantity = Number(this.form.quantity);
+                    this.form.phone = Number(this.form.phone);
+
+                    const self = this;
+                    // console.log(this.form);
+                    await this.$axios
+                        .post('/order/printing', this.form)
+                        .then(response => {
+                            self.snackbar = true;
+                            self.form.name = '';
+                            self.form.email = '';
+                            self.form.link = '';
+                            self.form.zipCode = '';
+                            self.form.height = 25;
+                            self.form.checkboxHollow = true;
+                            self.form.checkboxSupport = false;
+                            self.form.checkboxPostProcessing = false;
+                            self.form.quantity = 1;
+                            self.form.material = '';
+                            self.form.quality = '';
+                            self.form.country = '';
+                            self.form.latitude = '';
+                            self.form.longitude = '';
+                            self.form.state_abbreviation = '';
+                            self.form.state = '';
+                            self.form.city = '';
+                            self.form.address = '';
+                            self.form.phone = '';
+                            self.loading = false;
+                            self.$refs.form.resetValidation();
+                            setTimeout(function() {
+                                self.$router.push(self.localePath('index'));
+                            }, self.timeout);
+                            console.log(response);
+
+                            // self.$refs.form.reset();
+                        })
+                        .catch(err => {
+                            console.log('err11 ', err);
+                            self.snackbarError = true;
+                            self.loading = false;
+                        });
                 } catch (e) {}
             }
         }

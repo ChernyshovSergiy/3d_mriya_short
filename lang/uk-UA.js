@@ -118,5 +118,27 @@ export default {
     quantity_must_be_less_than_6_numbers: 'кількість повинна бути менше 6 цифр',
     quantity: 'Кількість (в штуках)',
     other: 'Другий',
-    order_3dPrinting: 'замовити 3D Друк'
+    order_3dPrinting: 'замовити 3D Друк',
+    recipient_address_title: 'Введіть адресу одержувача',
+    country: 'Країна / місце',
+    country_is_required: 'Виберіть країну',
+    zip: 'Поштовий індекс',
+    zip_is_required: "Поштовий індекс обов'язковий",
+    range: 'Діапазон та формат індексу:',
+    not_determined: 'не визначений',
+    state: "Штат (Об'ласть)",
+    city: 'Місто (район / населений пункт)',
+    city_is_required: "Населений пункт обов'язковий",
+    city_must_be_word: 'Населений пункт повинен бути словом',
+    city_must_be_greater_than_1_characters:
+        'Назва населеного пункту повинно бути не меньше 1 літери',
+    city_must_be_less_than_90_characters:
+        'Назва населеного пункту повинно бути не більше 90 букв',
+    address: 'Адреса (вулиця, будинок, кв)',
+    address_is_required: "Адреса обов'язкова",
+    phone: 'Номер телефону',
+    phone_is_required: "Телефон обов'язковий",
+    phone_number_must_be_digital:
+        'телефонний номер повинен містити тільки цифри',
+    phone_number_must_be_10_digits: 'телефонний номер повинен бути 10 цифр'
 };

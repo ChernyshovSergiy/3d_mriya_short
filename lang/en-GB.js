@@ -119,5 +119,24 @@ export default {
     other: 'Other',
     order_3dPrinting: 'order 3D Printing',
     recipient_address_title: "Enter your the recipient's address",
-    country: 'Country / Location'
+    country: 'Country / Location',
+    country_is_required: 'Select country',
+    zip: 'Zip code',
+    zip_is_required: 'Zip code is required',
+    range: 'Zip code range and format:',
+    not_determined: 'undefined',
+    state: 'State (Oblast)',
+    city: 'City (district / town)',
+    city_is_required: 'Locality is required',
+    city_must_be_word: 'Locality must be a word',
+    city_must_be_greater_than_1_characters:
+        'The name of the settlement must be no less than 1 letter',
+    city_must_be_less_than_90_characters:
+        'The name of the settlement must be no more than 90 letters',
+    address: 'Address (street, house, room)',
+    address_is_required: 'Address is required',
+    phone: 'Phone number',
+    phone_is_required: 'Phone is required',
+    phone_number_must_be_digital: 'phone number must contain only numbers',
+    phone_number_must_be_10_digits: 'the phone number must be 10 digits'
 };

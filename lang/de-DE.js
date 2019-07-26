@@ -122,5 +122,27 @@ export default {
         'Die Nummer muss kleiner als 6 Ziffern sein',
     quantity: 'Menge (in Stück)',
     other: 'Andere',
-    order_3dPrinting: '3D-Druck bestellen'
+    order_3dPrinting: '3D-Druck bestellen',
+
+    recipient_address_title: 'Geben Sie die Adresse des Empfängers ein',
+    country: 'Land / Ort',
+    country_is_required: 'Land auswählen',
+    zip: 'Postleitzahl',
+    zip_is_required: 'Postleitzahl ist erforderlich',
+    range: 'PLZ-Bereich und Format:',
+    not_determined: 'nicht definiert',
+    state: 'Staat (Flächenländer)',
+    city: 'Stadt (Bezirk / Stadt)',
+    city_is_required: 'Die Lokalität ist erforderlich',
+    city_must_be_word: 'Lokalität muss ein Wort sein',
+    city_must_be_greater_than_1_characters:
+        'Der Name der Siedlung darf nicht kleiner als 1 Buchstabe sein',
+    city_must_be_less_than_90_characters:
+        'Der Name der Siedlung darf nicht länger als 90 Buchstaben sein',
+    address: 'Adresse (Straße, Haus, Zimmer)',
+    address_is_required: 'Adresse ist erforderlich',
+    phone: 'Telefonnummer',
+    phone_is_required: 'Telefon ist erforderlich',
+    phone_number_must_be_digital: 'Die Telefonnummer darf nur Zahlen enthalten',
+    phone_number_must_be_10_digits: 'Die Telefonnummer muss 10-stellig sein'
 };
