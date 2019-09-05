@@ -147,7 +147,7 @@
                 </div>
             </div>
             <div class="text-xs-center">
-                <v-menu offset-y>
+                <v-menu open-on-hover offset-y>
                     <template v-slot:activator="{ on }">
                         <v-btn
                             v-for="(languag, i) in filteredLanguage"

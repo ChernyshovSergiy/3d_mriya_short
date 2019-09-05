@@ -103,9 +103,11 @@ export default {
             const res = await axios.post(apiUrl1, {
                 language: cLang
             });
-            const countries = await axios.post(apiUrl2, {
-                cLang: cLang
-            });
+            // const countries = await axios.post(apiUrl2, {
+            //     cLang: cLang
+            // });
+            // console.log('список стран: ', apiUrl2 + '/' + cLang);
+            const countries = await axios.get(apiUrl2 + '/' + cLang);
 
             this.massageMain = res.data.data.home_screen_massage.headline;
             this.headline = res.data.data.who_are_this_site_for.headline;
