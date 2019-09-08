@@ -176,29 +176,6 @@ export default {
         locale() {
             return this.$i18n.locale;
         }
-        // change() {
-        //     this.$store.dispatch('order/setOrderModelingCorrect');
-        //     if (this.$store.getters['order/mSnackbar'] === true) {
-        //         console.log('I`am this');
-        //         const self = this;
-        //         setTimeout(function() {
-        //             self.$store.dispatch('order/setOrderModelingNotCorrect');
-        //             setTimeout(function() {
-        //                 self.$store.dispatch('order/clearOrderModelingErrors');
-        //             }, 6000);
-        //         }, 6000);
-        //     }
-        // },
-        // mClose() {
-        //     this.$store.dispatch('order/clearOrderModelingErrors');
-        // },
-        // resetMessage() {
-        //     const self = this;
-        //     setTimeout(function() {
-        //         self.$store.dispatch('order/clearOrderModelingErrors');
-        //     }, 6000);
-        //     this.$router.push(this.localePath('index'));
-        // }
     }
 };
 </script>

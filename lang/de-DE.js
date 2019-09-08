@@ -144,5 +144,12 @@ export default {
     phone: 'Telefonnummer',
     phone_is_required: 'Telefon ist erforderlich',
     phone_number_must_be_digital: 'Die Telefonnummer darf nur Zahlen enthalten',
-    phone_number_must_be_10_digits: 'Die Telefonnummer muss 10-stellig sein'
+    phone_number_must_be_10_digits: 'Die Telefonnummer muss 10-stellig sein',
+
+    financial: 'Finanziell',
+    technical: 'Technisch',
+    delivery: 'Lieferung',
+    investments: 'Investitionen',
+    mass_media: 'Massenmedien',
+    legal: 'Legal'
 };

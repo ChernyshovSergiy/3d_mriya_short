@@ -110,7 +110,6 @@ export default {
                         })
                         .then(
                             response => {
-                                // console.log('result: ', response.data);
                                 this.$router.push('/sign-in');
                             },
                             error => {

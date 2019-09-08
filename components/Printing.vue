@@ -1121,11 +1121,6 @@ export default {
 
         // checkZipCodeChange: async function(newValue, oldValue) {
         checkZipCodeChange: async function() {
-            // console.log(
-            //     Number(this.zipCharacters),
-            //     ' ',
-            //     this.form.zipCode.length
-            // );
             if (
                 this.zipGet &&
                 this.form.zipCode.length >= Number(this.zipCharacters)
@@ -1173,8 +1168,6 @@ export default {
                             this.selectCity.place_name =
                                 response.data.places[0]['place name'];
                             this.form.state = this.selectCity.state;
-
-                            // console.log('Полный список: ', this.cities);
                         })
                         .catch(e => {
                             console.log('This is get zippopotam error: ' + e);
@@ -1219,7 +1212,6 @@ export default {
                     this.form.phone = Number(this.form.phone);
 
                     const self = this;
-                    // console.log(this.form);
                     await this.$axios
                         .post('/order/printing', this.form)
                         .then(response => {
@@ -1248,8 +1240,6 @@ export default {
                             setTimeout(function() {
                                 self.$router.push(self.localePath('index'));
                             }, self.timeout);
-                            console.log(response);
-
                             // self.$refs.form.reset();
                         })
                         .catch(err => {

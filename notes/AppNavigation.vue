@@ -232,11 +232,9 @@ export default {
             return false;
         },
         locales() {
-            // console.log(this.$store.state.lang.locales)
             return this.$store.state.lang.locales;
         },
         locale() {
-            // console.log(this.$store.state.lang.locale)
             return this.$store.state.lang.locale;
         },
         filteredLanguage: function() {
@@ -254,7 +252,6 @@ export default {
         },
         changeLanguage(locale) {
             this.$store.dispatch('lang/setLanguage', locale);
-            // console.log(this.$store.getters['lang/locale']);
         }
     }
 };

@@ -30,7 +30,7 @@ export default {
 
     methods: {
         onScroll(e) {
-            console.log(e.target.scrollTop);
+            // console.log(e.target.scrollTop);
             if (typeof window === 'undefined') return;
 
             const top =

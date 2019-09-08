@@ -35,13 +35,9 @@ export const actions = {
 
 export const getters = {
     mSnackbar(state) {
-        // console.log('mSnackbar', state.snackbar);
-        // console.log('mSnackbarError', state.snackbarError);
         return state.status.snackbar;
     },
     mSnackbarError(state) {
-        // console.log('mSnackbar', state.snackbar);
-        // console.log('mSnackbarError', state.snackbarError);
         return state.status.snackbarError;
     },
     snackbarStatus(state) {

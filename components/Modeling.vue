@@ -310,11 +310,9 @@ export default {
                 try {
                     this.loading = true;
                     const self = this;
-                    // console.log(this.form);
                     await this.$axios
                         .post('/order/modeling', this.form)
                         .then(response => {
-                            // console.log('1', response.data.errors.email[0])
                             self.snackbar = true;
                             self.form.name = '';
                             self.form.email = '';

@@ -144,5 +144,12 @@ export default {
     phone_number_must_be_digital:
         'El número de teléfono debe contener solamente números',
     phone_number_must_be_10_digits:
-        'el número de teléfono debe ser de 10 dígitos'
+        'el número de teléfono debe ser de 10 dígitos',
+
+    financial: 'Financiero',
+    technical: 'Técnico',
+    delivery: 'Entrega',
+    investments: 'Inversiones',
+    mass_media: 'Medios de comunicación',
+    legal: 'Legal'
 };

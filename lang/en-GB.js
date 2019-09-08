@@ -138,5 +138,12 @@ export default {
     phone: 'Phone number',
     phone_is_required: 'Phone is required',
     phone_number_must_be_digital: 'phone number must contain only numbers',
-    phone_number_must_be_10_digits: 'the phone number must be 10 digits'
+    phone_number_must_be_10_digits: 'the phone number must be 10 digits',
+
+    financial: 'Financial',
+    technical: 'Technical',
+    delivery: 'Delivery',
+    investments: 'Investments',
+    mass_media: 'Mass Media',
+    legal: 'Legal'
 };

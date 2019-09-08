@@ -39,11 +39,12 @@
                                         <v-list subheader class="transparent">
                                             <v-subheader
                                                 class="font-weight-regular yellow--text title"
-                                                v-text="title1"
+                                                v-text="menus.title1"
                                             ></v-subheader>
 
                                             <v-list-tile
-                                                v-for="(item, index) in points1"
+                                                v-for="(item,
+                                                index) in menus.points1"
                                                 :key="index"
                                                 :to="localePath(item.to)"
                                                 no-prefetch
@@ -90,10 +91,11 @@
                                         <v-list subheader class="transparent">
                                             <v-subheader
                                                 class="font-weight-regular yellow--text title"
-                                                v-text="title2"
+                                                v-text="menus.title2"
                                             ></v-subheader>
                                             <v-list-tile
-                                                v-for="(item, index) in points2"
+                                                v-for="(item,
+                                                index) in menus.points2"
                                                 :key="`${index}-2`"
                                                 :to="localePath(item.to)"
                                                 nuxt
@@ -106,10 +108,11 @@
                                             </v-list-tile>
                                             <v-subheader
                                                 class="font-weight-regular yellow--text title"
-                                                v-text="title3"
+                                                v-text="menus.title3"
                                             ></v-subheader>
                                             <v-list-tile
-                                                v-for="(item, index) in points3"
+                                                v-for="(item,
+                                                index) in menus.points3"
                                                 :key="`${index}-3`"
                                                 active-class="yellow--text font-weight-medium"
                                                 :to="localePath(item.to)"
@@ -134,10 +137,11 @@
                                         <v-list subheader class="transparent">
                                             <v-subheader
                                                 class="font-weight-regular yellow--text title"
-                                                v-text="title4"
+                                                v-text="menus.title4"
                                             ></v-subheader>
                                             <v-list-tile
-                                                v-for="(item, index) in points4"
+                                                v-for="(item,
+                                                index) in menus.points4"
                                                 :key="`${index}-4`"
                                                 exact
                                                 active-class="yellow--text font-weight-black"
@@ -289,35 +293,11 @@ export default {
         VSelect
     },
     props: {
-        title1: {
-            type: String,
-            default: ''
-        },
-        points1: {
-            type: Array,
+        menus: {
+            type: Object,
             required: true
         },
-        title2: {
-            type: String,
-            default: ''
-        },
-        points2: {
-            type: Array,
-            required: true
-        },
-        title3: {
-            type: String,
-            default: ''
-        },
-        points3: {
-            type: Array,
-            required: true
-        },
-        title4: {
-            type: String,
-            default: ''
-        },
-        points4: {
+        subjects: {
             type: Array,
             required: true
         }
@@ -339,7 +319,6 @@ export default {
                 'odnoklassniki',
                 'youtube'
             ],
-            title: '',
             valid: false,
             name: '',
             nameRules: [
@@ -358,15 +337,6 @@ export default {
             ],
             subject: null,
             subjectRules: [v => !!v || this.$t('subject_is_required')],
-            subjects: [
-                'Financial',
-                'Technical',
-                'Delivery',
-                'Investments',
-                'mass media',
-                'Legal',
-                'Other'
-            ],
             message: '',
             messageRules: [
                 v => !!v || this.messageRulesRequired(),
@@ -403,11 +373,6 @@ export default {
             ]
         };
     },
-    // computed: {
-    //     nameRulesRequired() {
-    //         return this.$t('name_is_required')
-    //     }
-    // },
     methods: {
         messageRulesRequired() {
             return this.$t('message_is_required');

@@ -229,7 +229,6 @@ export default {
                     .then(
                         result => {
                             this.response = result.data;
-                            console.log('my result: ', result.data);
                             this.loading = false;
                             this.indeterminate = false;
                             this.dialog = false;
@@ -247,11 +246,8 @@ export default {
                     await this.$axios
                         .post('/auth/register', this.form)
                         .then(response => {
-                            console.log('1', response.data.errors.email[0]);
                             if (response.data.errors.email[0] !== '') {
-                                console.log('2', this.dialog);
                                 this.dialog = true;
-                                console.log('3', this.dialog);
                             } else {
                                 this.$router.push('/sign-in');
                             }

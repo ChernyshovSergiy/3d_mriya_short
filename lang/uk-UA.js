@@ -140,5 +140,12 @@ export default {
     phone_is_required: "Телефон обов'язковий",
     phone_number_must_be_digital:
         'телефонний номер повинен містити тільки цифри',
-    phone_number_must_be_10_digits: 'телефонний номер повинен бути 10 цифр'
+    phone_number_must_be_10_digits: 'телефонний номер повинен бути 10 цифр',
+
+    financial: 'Фінансові',
+    technical: 'Технічні',
+    delivery: 'Доставка',
+    investments: 'Інвестиції',
+    mass_media: 'Засоби масової інформації',
+    legal: 'Юридичні'
 };

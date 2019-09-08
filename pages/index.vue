@@ -103,10 +103,6 @@ export default {
             const res = await axios.post(apiUrl1, {
                 language: cLang
             });
-            // const countries = await axios.post(apiUrl2, {
-            //     cLang: cLang
-            // });
-            // console.log('список стран: ', apiUrl2 + '/' + cLang);
             const countries = await axios.get(apiUrl2 + '/' + cLang);
 
             this.massageMain = res.data.data.home_screen_massage.headline;
@@ -123,7 +119,6 @@ export default {
             this.PaintingTitle = res.data.data.painting_text.headline;
             this.PaintingText = res.data.data.painting_text.text;
             this.countryList = countries.data.data;
-            // console.log('список стран: ', this.countryList);
         } catch (e) {
             console.log(e);
         }

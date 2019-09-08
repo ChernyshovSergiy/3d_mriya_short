@@ -141,5 +141,12 @@ export default {
     phone_is_required: 'Телефон обязателен',
     phone_number_must_be_digital:
         'телефоный номер должен содержать только цифры',
-    phone_number_must_be_10_digits: 'телефоный номер должен быть 10 цифр'
+    phone_number_must_be_10_digits: 'телефоный номер должен быть 10 цифр',
+
+    financial: 'Финансовый',
+    technical: 'Технический',
+    delivery: 'Доставка',
+    investments: 'Инвестиции',
+    mass_media: 'СМИ',
+    legal: 'Право'
 };
