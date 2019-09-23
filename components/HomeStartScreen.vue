@@ -14,7 +14,7 @@
                             <v-tooltip bottom>
                                 <template #activator="{ on: tooltip }">
                                     <v-btn
-                                        :to="localePath('printing')"
+                                        v-scroll-to="'#Printing'"
                                         outline
                                         block
                                         large
@@ -182,7 +182,7 @@ export default {
 
 <style scoped>
 .home-hero {
-    background: url('~assets/images/Masaraty.jpg');
+    background: url('~/assets/images/Masaraty.jpg');
     background-size: cover;
     /*width: 100%;*/
     height: 100%;

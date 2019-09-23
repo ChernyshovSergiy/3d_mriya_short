@@ -21,9 +21,9 @@
         />
         <printing-fons />
         <painting :title="PaintingTitle" :text="PaintingText" />
-        <no-ssr>
-            <swiper-images-carousel2 />
-        </no-ssr>
+        <!--        <no-ssr>-->
+        <swiper-images-carousel2 />
+        <!--        </no-ssr>-->
         <v-layout row>
             <v-flex
                 xs12
@@ -97,8 +97,8 @@ export default {
     },
     created: async function() {
         try {
-            const apiUrl1 = 'http://127.0.0.1:9090/api/v1/page/contents';
-            const apiUrl2 = 'http://127.0.0.1:9090/api/v1/order/countries';
+            const apiUrl1 = process.env.baseUrl + '/page/contents';
+            const apiUrl2 = process.env.baseUrl + '/order/countries';
             const cLang = this.$i18n.locale;
             const res = await axios.post(apiUrl1, {
                 language: cLang

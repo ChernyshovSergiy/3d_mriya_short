@@ -1,13 +1,13 @@
 <template>
     <v-responsive>
         <v-parallax
-            :src="require('@/assets/images/Printing.jpg')"
+            :src="require('~/assets/images/Printing.jpg')"
             height="480"
             class="hidden-xs-only"
         >
         </v-parallax>
         <!--<v-parallax-->
-        <!--:src="require('@/assets/TownFoneVerticalDark.jpg')"-->
+        <!--:src="require('~/assets/TownFoneVerticalDark.jpg')"-->
         <!--height="auto"-->
         <!--class="hidden-sm-and-up"-->
         <!--&gt;-->

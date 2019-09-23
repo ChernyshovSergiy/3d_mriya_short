@@ -1,10 +1,7 @@
 // import axios from 'axios';
 export default function({ route, store, $axios }) {
     return $axios
-        .$get(
-            'http://127.0.0.1:9090/api/v1/order/modeling/verify/' +
-                route.params.id
-        )
+        .$get(process.env.baseUrl + '/order/modeling/verify/' + route.params.id)
         .then(res => {
             console.log('result = ', res);
             store.dispatch('order/setOrderModelingCorrect');

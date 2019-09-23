@@ -4,7 +4,7 @@
             <v-flex xs12 md4 block mt-5>
                 <v-responsive>
                     <v-img
-                        :src="require('@/assets/images/Modeling.png')"
+                        :src="require('~/assets/images/Modeling.png')"
                         height="100%"
                     />
                 </v-responsive>
@@ -17,7 +17,7 @@
                     <v-card-text class="subheading elevation-2 pa-1">
                         <v-responsive>
                             <v-img
-                                :src="require('@/assets/images/convert.svg')"
+                                :src="require('~/assets/images/convert.svg')"
                                 width="auto"
                             >
                                 <v-layout
@@ -312,7 +312,7 @@ export default {
                     const self = this;
                     await this.$axios
                         .post('/order/modeling', this.form)
-                        .then(response => {
+                        .then(() => {
                             self.snackbar = true;
                             self.form.name = '';
                             self.form.email = '';

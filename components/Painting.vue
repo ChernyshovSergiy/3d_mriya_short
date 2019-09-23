@@ -4,7 +4,7 @@
             <v-flex xs12 md5 block mt-5>
                 <v-responsive>
                     <v-img
-                        :src="require('@/assets/images/Painting.png')"
+                        :src="require('~/assets/images/Painting.png')"
                         height="100%"
                     />
                 </v-responsive>

@@ -1,3 +1,4 @@
+// import axios from 'axios';
 export default function({ $axios, store }) {
     $axios.onError(error => {
         if (error.response.status === 422) {
@@ -8,4 +9,7 @@ export default function({ $axios, store }) {
     $axios.onRequest(() => {
         store.dispatch('validation/clearErrors');
     });
+    // axios.create({
+    //     baseURL: process.env.baseUrl
+    // });
 }

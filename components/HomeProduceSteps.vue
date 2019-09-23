@@ -24,7 +24,7 @@
                             <v-responsive>
                                 <v-img
                                     :src="
-                                        require('@/assets/images/' +
+                                        require('~/assets/images/' +
                                             `${step.image}`)
                                     "
                                     height="100%"
@@ -136,16 +136,16 @@ export default {
     padding: 1em;
     width: 100%;
 }
-.list-content p {
-    flex: 1 0 auto;
-}
-.border {
-    border: solid 1px #999;
-}
-.flex {
-    flex: 0 1 auto;
-}
-.grow {
-    flex-grow: 1;
-}
+/*.list-content p {*/
+/*    flex: 1 0 auto;*/
+/*}*/
+/*.border {*/
+/*    border: solid 1px #999;*/
+/*}*/
+/*.flex {*/
+/*    flex: 0 1 auto;*/
+/*}*/
+/*.grow {*/
+/*    flex-grow: 1;*/
+/*}*/
 </style>

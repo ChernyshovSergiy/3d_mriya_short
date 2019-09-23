@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const state = () => ({
-    apiUrl: 'http://127.0.0.1:9090/api/v1/page/menus',
+    apiUrl: process.env.baseUrl + '/page/menus',
     menu: {},
     lang: ''
 });

@@ -10,7 +10,7 @@
                         <v-responsive>
                             <v-img
                                 :src="
-                                    require('@/assets/images/convert_longer4.svg')
+                                    require('~/assets/images/convert_longer4.svg')
                                 "
                                 height="auto"
                             >
@@ -863,7 +863,7 @@
             <v-flex xs12 md5 block mt-5>
                 <v-responsive>
                     <v-img
-                        :src="require('@/assets/images/3DPrinted.png')"
+                        :src="require('~/assets/images/3DPrinted.png')"
                         height="100%"
                     />
                 </v-responsive>
@@ -1098,7 +1098,7 @@ export default {
                 this.form.state = '';
                 this.form.city = '';
                 const local = this.selectCountry.country_alpha2_code;
-                const apiUrl = 'http://127.0.0.1:9090/api/v1/order/masks';
+                const apiUrl = process.env.baseUrl + '/order/masks';
                 await axios
                     .post(apiUrl, {
                         country_alpha2_code: local
@@ -1136,7 +1136,7 @@ export default {
                     this.form.state = '';
                     const local = this.selectCountry.country_alpha2_code;
                     const apiUrlZ =
-                        'http://api.zippopotam.us/' +
+                        'https://api.zippopotam.us/' +
                         local +
                         '/' +
                         this.form.zipCode;
@@ -1214,7 +1214,7 @@ export default {
                     const self = this;
                     await this.$axios
                         .post('/order/printing', this.form)
-                        .then(response => {
+                        .then(() => {
                             self.snackbar = true;
                             self.form.name = '';
                             self.form.email = '';

@@ -1,7 +1,9 @@
 import axios from 'axios';
+// import axios from '~/plugins/axios';
 
 export const state = () => ({
-    apiUrl: 'http://127.0.0.1:9090/api/v1/page/contents',
+    // apiUrl: 'http://127.0.0.1:9090/api/v1/page/contents',
+    apiUrl: process.env.baseUrl + '/page/contents',
     home_screen_massage: {
         headline: {
             $lang: ''
@@ -28,6 +30,7 @@ export const actions = {
         try {
             const response = await axios.get(`${state.apiUrl}`, {});
             commit('setContent', response.data.home_screen_massage.content);
+            console.log('store.content: ', `${state.apiUrl}`);
         } catch (error) {
             commit('setContent', []);
         }

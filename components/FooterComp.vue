@@ -11,7 +11,7 @@
                 <v-img
                     wrap
                     flex
-                    :src="require('@/assets/images/footerBG.jpg')"
+                    :src="require('~/assets/images/footerBG.jpg')"
                     height="auto"
                 >
                     <v-container>
@@ -68,7 +68,7 @@
                                                 <v-card flat>
                                                     <v-img
                                                         :src="
-                                                            require('@/assets/images/cards/' +
+                                                            require('~/assets/images/cards/' +
                                                                 `${
                                                                     FinCard.image
                                                                 }`)

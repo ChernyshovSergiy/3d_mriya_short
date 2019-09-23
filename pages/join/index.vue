@@ -7,8 +7,7 @@
                         <v-toolbar dark color="blue-grey darken-4">
                             <v-toolbar-title>Join Form</v-toolbar-title>
                         </v-toolbar>
-                        <v-card-text
-                            >{{ errors }}
+                        <v-card-text>
                             <v-form ref="form" v-model="valid" lazy-validation>
                                 <v-text-field
                                     v-model="form.name"

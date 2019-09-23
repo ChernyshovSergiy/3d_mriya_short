@@ -207,7 +207,11 @@ export default {
      */
     axios: {
         // See https://github.com/nuxt-community/axios-module#options
-        baseURL: 'http://127.0.0.1:9090/api/v1'
+        baseURL: 'http://127.0.0.1:9696/api/v1'
+    },
+    env: {
+        baseUrl: 'http://127.0.0.1:9696/api/v1' || 'http://localhost:3000'
+        // baseUrl: process.env.BASE_URL || 'http://localhost:3000'
     },
 
     /*

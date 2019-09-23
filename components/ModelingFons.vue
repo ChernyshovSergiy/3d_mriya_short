@@ -1,7 +1,7 @@
 <template>
     <v-responsive>
         <v-parallax
-            :src="require('@/assets/images/TownFoneDark.jpg')"
+            :src="require('~/assets/images/TownFoneDark.jpg')"
             height="380"
             class="hidden-xs-only"
         >
@@ -10,7 +10,7 @@
                     <v-flex :key="index" xs12 sm4 md3 block class="pa-3">
                         <v-responsive>
                             <v-img
-                                :src="require('@/assets/images/' + `${image}`)"
+                                :src="require('~/assets/images/' + `${image}`)"
                                 width="100%"
                             />
                         </v-responsive>
@@ -19,7 +19,7 @@
             </v-layout>
         </v-parallax>
         <v-parallax
-            :src="require('@/assets/images/TownFoneVerticalDark.jpg')"
+            :src="require('~/assets/images/TownFoneVerticalDark.jpg')"
             height="auto"
             class="hidden-sm-and-up"
         >
@@ -28,7 +28,7 @@
                     <v-flex :key="index" xs10 sm4 block class="pa-3">
                         <v-responsive>
                             <v-img
-                                :src="require('@/assets/images/' + `${image}`)"
+                                :src="require('~/assets/images/' + `${image}`)"
                                 width="100%"
                             />
                         </v-responsive>
